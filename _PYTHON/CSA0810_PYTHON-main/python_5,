@@ -1,0 +1,22 @@
+import math
+
+sample_mean = 91  
+sample_stddev = 8  
+sample_size = 30  
+confidence_level = 0.85 
+z_value = 1.440  
+
+
+standard_error = sample_stddev / math.sqrt(sample_size)
+
+
+margin = z_value * standard_error
+
+
+lower_limit = sample_mean - margin
+upper_limit = sample_mean + margin
+
+
+print(f"The {confidence_level * 100}% confidence limits are:")
+print(f"Lower Limit: {lower_limit:.1f} mm")
+print(f"Upper Limit: {upper_limit:.1f} mm")

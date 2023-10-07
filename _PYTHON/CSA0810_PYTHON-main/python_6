@@ -1,0 +1,41 @@
+import nltk
+from nltk.tokenize import sent_tokenize
+
+
+def find_sentences_with_words(text, words):
+    sentences = sent_tokenize(text)
+    word_sentences = {word: [] for word in words}
+
+    for word in words:
+        for index, sentence in enumerate(sentences):
+            if word in sentence.lower():
+                word_sentences[word].append((index, sentence))
+
+    return word_sentences
+
+
+with open('text_file1.txt', 'r', encoding='utf-8', errors='ignore') as file1:
+    text1 = file1.read()
+
+with open('text_file2.txt', 'r', encoding='utf-8', errors='ignore') as file2:
+    text2 = file2.read()
+
+
+target_words = ["computer", "engineering", "research", "setting"]
+
+
+sentences_text1 = find_sentences_with_words(text1, target_words)
+sentences_text2 = find_sentences_with_words(text2, target_words)
+
+
+print("Sentences containing target words in Text File 1:")
+for word, sentences in sentences_text1.items():
+    print(f"{word}:")
+    for index, sentence in sentences:
+        print(f"  Sentence {index + 1}: {sentence}")
+
+print("\nSentences containing target words in Text File 2:")
+for word, sentences in sentences_text2.items():
+    print(f"{word}:")
+    for index, sentence in sentences:
+        print(f"  Sentence {index + 1}: {sentence}")
